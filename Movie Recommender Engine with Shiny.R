@@ -60,6 +60,30 @@ model1  <- Recommender(rating.matrix, method = 'UBCF', param = list(method = 'pe
   # names(Top10movies)[1] <- "Similar Movies"
   # Top10movies
 
+#this model made with 20 nearest neighbors
+
+#evaluating and comapring with other model(s):
+evaluating  <- evaluationScheme(rating.matrix, method = 'cross-validation',k = 5, given = -1,goodRating = 5)
+
+models <- list('UCF_10' = list(name = 'UBCF',param = list(nn = 10)),
+               'UCF_15' = list(name = 'UBCF',param = list(nn = 15)),
+               'UCF_20' = list(name = 'UBCF',param = list(nn = 20)))
+set.seed(12345)
+
+result.list <- evaluate(evaluating, method = models, type = 'ratings')
+results <- avg(results.list) %>% unlist()
+results <- as.data.frame(results)
+labels <- c('RMSE','MSE','MAE')
+results$Labels <- labels
+results$method <- row.names(results)
+names(results)[1] <- "Error Value"
+
+#We will only consider RMSE in this comparison
+results <- results %>% filter(Lables=='RMSE')
+
+print(results) #the least RMSE comes with 20 nn and therefore we use it for our final model.
+
+#We can also try "Random" and "Popularity" methods of the recommender lab.
 
 #creating a web application using shiny
 
@@ -104,7 +128,8 @@ server <- function(input, output){
 
 shinyApp(ui = ui, server = server)
 
-
+# To provide a better recommendation, ensembelled methods can be used. 
+# We can use both collabrorative and content based filtering in such cases.
 
 
 
