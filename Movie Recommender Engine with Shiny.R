@@ -3,7 +3,7 @@
 library(shiny) #to make the web-application
 library(dplyr) #to filter/ operate on dataframes
 library(reshape2) #to make differnt user-item matrix
-library(Matrix) #for creating sparse and 
+library(Matrix) #for creating sparse matrix 
 library(recommenderlab) #for creating real rating matrix and run recommendation algorithm
 
 #read the data
