@@ -1,4 +1,4 @@
-# Utilized user to user collaborative filtering to make a web application to recommendation of movies to a certain user. Data Analysis and models have been built on R 3.7 and web application is developed using R "Shiny" package.
+# Utilized user to user collaborative filtering and made a web application to recommend movies to a certain user as per their preevious movie feedback (ratings). Data Analysis and machine learning models have been built on R 3.7 and web application is developed using R "Shiny" package.
 
 Dataset used: https://www.kaggle.com/rounakbanik/the-movies-dataset
 
